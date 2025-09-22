@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vozes do Sertão - Podcast</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="page-header">
+        <h1>Vozes do Sertão</h1>
+        <p>O podcast escolar onde os alunos dão voz à cultura local.</p>
+    </header>
+
+    <main class="quiz-info-container">
+        <div class="info-block">
+            <h2>Como funciona</h2>
+            <p>Alunos criam episódios curtos com entrevistas, histórias ou debates sobre os municípios.</p>
+        </div>
+        <div class="info-block">
+            <h2>Objetivo</h2>
+            <p>Desenvolver expressão oral, escuta ativa e valorização da cultura local.</p>
+        </div>
+        <div class="info-block">
+            <h2>Regras</h2>
+            <p>Grupos produzem episódios com roteiro, gravação e edição básica, usando celular ou computador.</p>
+        </div>
+        <div class="info-block bncc">
+            <h2>BNCC</h2>
+            <p>EF07LP06, EF07GE03</p>
+        </div>
+    </main>
+
+    <div id="podcast-list" class="podcast-grid">
+    </div>
+
+    <div id="modal-player" class="modal-overlay">
+        <div class="modal-content">
+            <button id="modal-close-btn" class="modal-close">&times;</button>
+            <div id="modal-video-container" class="video-responsive-wrapper">
+            </div>
+        </div>
+    </div>
+
+
+    <a href="../index.html" class="back-link">Voltar para o Hub</a>
+
+    <script src="../js/podcasts.js"></script>
+</body>
+
+</html>
