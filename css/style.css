@@ -860,3 +860,153 @@ a.podcast-card.direct-link {
     opacity: 0.5;
     cursor: not-allowed;
 }
+
+
+body {
+    overflow: hidden;
+}
+
+.full-screen-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.full-screen-container .page-header {
+    flex-shrink: 0;
+    margin-bottom: 1rem;
+}
+
+.full-screen-container .game-container {
+    flex-grow: 1;
+    max-width: none;
+}
+
+.game-interface {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 8px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-mid-blue);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.board-space {
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.board-space:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.board-space:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.board-space:nth-child(3) {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+.board-space:nth-child(4) {
+    grid-column: 4;
+    grid-row: 1;
+}
+
+.board-space:nth-child(5) {
+    grid-column: 5;
+    grid-row: 1;
+}
+
+.board-space:nth-child(6) {
+    grid-column: 6;
+    grid-row: 1;
+}
+
+.board-space:nth-child(7) {
+    grid-column: 6;
+    grid-row: 2;
+}
+
+.board-space:nth-child(8) {
+    grid-column: 5;
+    grid-row: 2;
+}
+
+.board-space:nth-child(9) {
+    grid-column: 4;
+    grid-row: 2;
+}
+
+.board-space:nth-child(10) {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+.board-space:nth-child(11) {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.board-space:nth-child(12) {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.board-space:nth-child(13) {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+.board-space:nth-child(14) {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+.board-space:nth-child(15) {
+    grid-column: 3;
+    grid-row: 3;
+}
+
+.board-space:nth-child(16) {
+    grid-column: 4;
+    grid-row: 3;
+}
+
+.board-space:nth-child(17) {
+    grid-column: 5;
+    grid-row: 3;
+}
+
+.board-space:nth-child(18) {
+    grid-column: 6;
+    grid-row: 3;
+}
+
+.board-space:nth-child(19) {
+    grid-column: 6;
+    grid-row: 4;
+}
