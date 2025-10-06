@@ -628,3 +628,235 @@ a.podcast-card.direct-link {
     text-align: center;
     min-height: 2rem;
 }
+
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    width: 100%;
+    background-color: var(--bg-mid-blue);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.board-space {
+    background-color: var(--bg-dark-blue);
+    color: var(--text-muted);
+    padding: 1rem;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 0.8rem;
+    min-height: 80px;
+    position: relative;
+    border: 1px solid #3A506B;
+}
+
+.board-space.start {
+    background-color: var(--accent-cyan);
+    color: var(--bg-dark-blue);
+    font-weight: 700;
+}
+
+.board-space.end {
+    background-color: var(--accent-orange);
+    color: var(--bg-dark-blue);
+    font-weight: 700;
+}
+
+.player-marker {
+    width: 25px;
+    height: 25px;
+    background-color: #F1FAEE;
+    border-radius: 50%;
+    border: 3px solid var(--accent-orange);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.game-controls {
+    text-align: center;
+    background-color: var(--bg-mid-blue);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    width: 100%;
+    max-width: 400px;
+}
+
+#player-info {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+#roll-dice-btn {
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--bg-dark-blue);
+    background-color: var(--accent-cyan);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#roll-dice-btn:hover {
+    filter: brightness(1.1);
+}
+
+#dice-result {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    min-height: 1.5rem;
+}
+
+#card-modal .modal-content {
+    padding: 2rem;
+    text-align: center;
+    max-width: 500px;
+}
+
+#card-content h3 {
+    color: var(--accent-orange);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+#card-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.card-close-btn,
+.card-option-btn {
+    padding: 0.7rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    border-radius: var(--border-radius);
+    margin: 0.5rem;
+    transition: transform 0.2s ease;
+}
+
+.card-close-btn {
+    background-color: var(--accent-cyan);
+    color: var(--bg-dark-blue);
+}
+
+.card-option-btn {
+    background-color: var(--bg-mid-blue);
+    color: var(--text-light);
+    border: 1px solid var(--accent-cyan);
+}
+
+.card-close-btn:hover,
+.card-option-btn:hover {
+    transform: scale(1.05);
+}
+
+
+:root {
+    --player-color-1: #E07A5F;
+    --player-color-2: #5BC0BE;
+    --player-color-3: #F1FAEE;
+    --player-color-4: #F2C46D;
+}
+
+.player-marker {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+    font-size: 14px;
+    color: var(--bg-dark-blue);
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease;
+}
+
+.player-marker.player-1 {
+    background-color: var(--player-color-1);
+    top: 30%;
+    left: 30%;
+}
+
+.player-marker.player-2 {
+    background-color: var(--player-color-2);
+    top: 30%;
+    left: 70%;
+}
+
+.player-marker.player-3 {
+    background-color: var(--player-color-3);
+    top: 70%;
+    left: 30%;
+}
+
+.player-marker.player-4 {
+    background-color: var(--player-color-4);
+    top: 70%;
+    left: 70%;
+}
+
+
+#player-setup h2 {
+    margin-bottom: 1rem;
+    color: var(--accent-cyan);
+}
+
+#player-setup select {
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    width: 80%;
+    background-color: var(--bg-dark-blue);
+    color: var(--text-light);
+    border: 1px solid var(--accent-cyan);
+    border-radius: var(--border-radius);
+}
+
+#start-game-btn {
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--bg-dark-blue);
+    background-color: var(--accent-orange);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+.game-info {
+    border: 2px solid var(--accent-cyan);
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    transition: border-color 0.5s ease;
+}
+
+.game-info span {
+    font-weight: 700;
+}
+
+#roll-dice-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

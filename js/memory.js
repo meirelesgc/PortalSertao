@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const difficultyButtons = document.querySelectorAll('.difficulty-btn');
     const gameFeedback = document.getElementById('game-feedback');
 
-    // ONDE VOCÊ IRÁ ADICIONAR E MODIFICAR OS CARTÕES
     const allCards = [
         { name: 'cangaceiro', type: 'image', content: '../images/cangaceiro.png', info: 'Cangaceiros eram nômades bandoleiros do nordeste brasileiro.' },
         { name: 'mandioca', type: 'image', content: '../images/mandioca.png', info: 'A mandioca é uma raiz fundamental na culinária do sertão.' },
