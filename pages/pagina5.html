@@ -13,39 +13,42 @@
 
 <body>
 
-    <div class="full-screen-container">
-        <header class="page-header">
-            <h1>Rota do Sertão</h1>
-            <p>Um jogo de tabuleiro interativo para conhecer os municípios do Portal do Sertão.</p>
-        </header>
+    <div class="game-layout-container">
+        <div class="board-area">
+            <header class="page-header">
+                <h1>Rota do Sertão</h1>
+                <p>Um jogo de tabuleiro interativo para conhecer os municípios do Portal do Sertão.</p>
+            </header>
 
-        <main class="game-container">
-            <div id="game-board" class="board">
-            </div>
-        </main>
-    </div>
-
-    <div class="game-interface">
-        <div id="player-setup" class="game-controls">
-            <h2>Quantos vão jogar?</h2>
-            <select id="num-players">
-                <option value="2">2 Jogadores</option>
-                <option value="3">3 Jogadores</option>
-                <option value="4">4 Jogadores</option>
-            </select>
-            <button id="start-game-btn">Começar Jogo</button>
+            <main class="game-container">
+                <div id="game-board" class="board">
+                </div>
+            </main>
         </div>
 
-        <div id="game-controls" class="game-controls" style="display: none;">
-            <div class="game-info">
-                <p>É a vez do: <span id="current-player"></span></p>
+        <div class="menu-area">
+            <div id="player-setup" class="game-controls">
+                <h2>Quantos vão jogar?</h2>
+                <select id="num-players">
+                    <option value="2">2 Jogadores</option>
+                    <option value="3">3 Jogadores</option>
+                    <option value="4">4 Jogadores</option>
+                </select>
+                <button id="start-game-btn">Começar Jogo</button>
             </div>
-            <button id="roll-dice-btn">Lançar Dado</button>
-            <div id="dice-result"></div>
-        </div>
 
-        <a href="../index.html" class="back-link">Voltar para o Hub</a>
+            <div id="game-controls" class="game-controls" style="display: none;">
+                <div class="game-info">
+                    <p>É a vez do: <span id="current-player"></span></p>
+                </div>
+                <button id="roll-dice-btn">Lançar Dado</button>
+                <div id="dice-result"></div>
+            </div>
+
+            <a href="../index.html" class="back-link">Voltar para o Hub</a>
+        </div>
     </div>
+
 
     <div id="card-modal" class="modal-overlay" style="display: none;">
         <div class="modal-content">
