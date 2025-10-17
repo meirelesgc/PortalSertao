@@ -1,0 +1,389 @@
+.game-rota-page {
+    overflow: hidden;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 8px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-mid-blue);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.board-space {
+    background-color: var(--bg-dark-blue);
+    color: var(--text-muted);
+    padding: 0.5rem;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 0.8rem;
+    min-height: 80px;
+    position: relative;
+    border: 1px solid #3A506B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.board-space.start {
+    background-color: var(--accent-cyan);
+    color: var(--bg-dark-blue);
+    font-weight: 700;
+}
+
+.board-space.end {
+    background-color: var(--accent-orange);
+    color: var(--bg-dark-blue);
+    font-weight: 700;
+}
+
+.player-marker {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+    font-size: 16px;
+    color: var(--bg-dark-blue);
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.player-marker.player-1 {
+    background-color: var(--player-color-1);
+    top: 30%;
+    left: 30%;
+    border: 3px solid var(--player-color-1);
+}
+
+.player-marker.player-2 {
+    background-color: var(--player-color-2);
+    top: 30%;
+    left: 70%;
+    border: 3px solid var(--player-color-2);
+}
+
+.player-marker.player-3 {
+    background-color: var(--player-color-3);
+    top: 70%;
+    left: 30%;
+    border: 3px solid var(--player-color-3);
+}
+
+.player-marker.player-4 {
+    background-color: var(--player-color-4);
+    top: 70%;
+    left: 70%;
+    border: 3px solid var(--player-color-4);
+}
+
+.game-controls {
+    text-align: center;
+    background-color: var(--bg-mid-blue);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    width: 100%;
+    max-width: 400px;
+}
+
+#roll-dice-btn {
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--bg-dark-blue);
+    background-color: var(--accent-cyan);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#roll-dice-btn:hover {
+    filter: brightness(1.1);
+}
+
+#dice-result {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    min-height: 1.5rem;
+}
+
+#card-modal .modal-content {
+    padding: 2rem;
+    text-align: center;
+    max-width: 500px;
+}
+
+#card-content h3 {
+    color: var(--accent-orange);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+#card-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.card-close-btn,
+.card-option-btn {
+    padding: 0.7rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    border-radius: var(--border-radius);
+    margin: 0.5rem;
+    transition: transform 0.2s ease;
+}
+
+.card-close-btn {
+    background-color: var(--accent-cyan);
+    color: var(--bg-dark-blue);
+}
+
+.card-option-btn {
+    background-color: var(--bg-mid-blue);
+    color: var(--text-light);
+    border: 1px solid var(--accent-cyan);
+}
+
+.card-close-btn:hover,
+.card-option-btn:hover {
+    transform: scale(1.05);
+}
+
+#player-setup h2 {
+    margin-bottom: 1rem;
+    color: var(--accent-cyan);
+}
+
+#player-setup select {
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    width: 80%;
+    background-color: var(--bg-dark-blue);
+    color: var(--text-light);
+    border: 1px solid var(--accent-cyan);
+    border-radius: var(--border-radius);
+}
+
+#start-game-btn {
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--bg-dark-blue);
+    background-color: var(--accent-orange);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+.game-info {
+    border: 2px solid var(--accent-cyan);
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    transition: border-color 0.5s ease;
+}
+
+.game-info span {
+    font-weight: 700;
+}
+
+#roll-dice-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.game-layout-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.board-area {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.menu-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem;
+    background-color: var(--bg-mid-blue);
+    border-radius: var(--border-radius);
+}
+
+.board-area .game-container {
+    flex-grow: 1;
+    width: 100%;
+    max-width: none;
+}
+
+.board-area .page-header {
+    margin-bottom: 1rem;
+}
+
+.menu-area .back-link {
+    width: 100%;
+    text-align: center;
+    margin-top: auto;
+}
+
+#player-inputs-container {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    text-align: left;
+}
+
+.player-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.player-input-group label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.player-input-group input[type="text"],
+.player-input-group input[type="file"] {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: var(--bg-dark-blue);
+    color: var(--text-light);
+    border: 1px solid var(--accent-cyan);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+}
+
+.player-input-group input[type="file"] {
+    padding: 0.3rem;
+}
+
+.board-space:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.board-space:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.board-space:nth-child(3) {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+.board-space:nth-child(4) {
+    grid-column: 4;
+    grid-row: 1;
+}
+
+.board-space:nth-child(5) {
+    grid-column: 5;
+    grid-row: 1;
+}
+
+.board-space:nth-child(6) {
+    grid-column: 6;
+    grid-row: 1;
+}
+
+.board-space:nth-child(7) {
+    grid-column: 6;
+    grid-row: 2;
+}
+
+.board-space:nth-child(8) {
+    grid-column: 5;
+    grid-row: 2;
+}
+
+.board-space:nth-child(9) {
+    grid-column: 4;
+    grid-row: 2;
+}
+
+.board-space:nth-child(10) {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+.board-space:nth-child(11) {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.board-space:nth-child(12) {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.board-space:nth-child(13) {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+.board-space:nth-child(14) {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+.board-space:nth-child(15) {
+    grid-column: 3;
+    grid-row: 3;
+}
+
+.board-space:nth-child(16) {
+    grid-column: 4;
+    grid-row: 3;
+}
+
+.board-space:nth-child(17) {
+    grid-column: 5;
+    grid-row: 3;
+}
+
+.board-space:nth-child(18) {
+    grid-column: 6;
+    grid-row: 3;
+}
+
+.board-space:nth-child(19) {
+    grid-column: 6;
+    grid-row: 4;
+}

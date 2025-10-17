@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const gameControls = document.getElementById('game-controls');
     const startGameBtn = document.getElementById('start-game-btn');
     const numPlayersSelect = document.getElementById('num-players');
+    // NOVO: Container para os inputs dos jogadores
+    const playerInputsContainer = document.getElementById('player-inputs-container');
 
     // Dados do Jogo
     const municipios = [
@@ -32,12 +34,40 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentPlayerIndex = 0;
     let diceRoll = 0;
 
-    // Funções do Jogo
+    // --- NOVAS FUNÇÕES E ATUALIZAÇÕES ---
+
+    // NOVO: Função para gerar os campos de nome e foto
+    function generatePlayerInputs(numPlayers) {
+        playerInputsContainer.innerHTML = ''; // Limpa os inputs anteriores
+        for (let i = 1; i <= numPlayers; i++) {
+            const playerInputHtml = `
+                <div class="player-input-group">
+                    <label for="player-name-${i}">Nome Jogador ${i}:</label>
+                    <input type="text" id="player-name-${i}" placeholder="Digite o nome" value="Jogador ${i}">
+                    <label for="player-photo-${i}">Foto Jogador ${i}:</label>
+                    <input type="file" id="player-photo-${i}" accept="image/*">
+                </div>
+            `;
+            playerInputsContainer.innerHTML += playerInputHtml;
+        }
+    }
+
+    // ATUALIZADO: Função startGame para ler os nomes e fotos
     function startGame() {
         const numPlayers = parseInt(numPlayersSelect.value);
         players = [];
         for (let i = 1; i <= numPlayers; i++) {
-            players.push({ id: i, position: 0, blockedTurns: 0 });
+            const playerName = document.getElementById(`player-name-${i}`).value || `Jogador ${i}`;
+            const playerPhotoInput = document.getElementById(`player-photo-${i}`);
+            const playerPhoto = playerPhotoInput.files[0] ? URL.createObjectURL(playerPhotoInput.files[0]) : null;
+
+            players.push({
+                id: i,
+                name: playerName,
+                photo: playerPhoto,
+                position: 0,
+                blockedTurns: 0
+            });
         }
         currentPlayerIndex = 0;
 
@@ -47,6 +77,53 @@ document.addEventListener('DOMContentLoaded', () => {
         renderizarTabuleiro();
         atualizarInfoJogador();
     }
+
+    // ATUALIZADO: Função para renderizar o peão com a foto do jogador
+    function atualizarPosicoesDosJogadores() {
+        document.querySelectorAll('.player-marker').forEach(marker => marker.remove());
+        players.forEach(player => {
+            const currentSpaceDiv = document.querySelector(`.board-space[data-index='${player.position}']`);
+            if (currentSpaceDiv) {
+                const playerMarker = document.createElement('div');
+                playerMarker.className = `player-marker player-${player.id}`;
+                playerMarker.setAttribute('data-name', player.name); // Adiciona o nome para o tooltip
+
+                if (player.photo) {
+                    playerMarker.style.backgroundImage = `url(${player.photo})`;
+                    playerMarker.textContent = ''; // Remove o número se tiver foto
+                } else {
+                    playerMarker.textContent = player.id; // Mantém o número se não tiver foto
+                }
+
+                currentSpaceDiv.appendChild(playerMarker);
+            }
+        });
+    }
+
+    // ATUALIZADO: Função para mostrar o nome customizado do jogador
+    function atualizarInfoJogador() {
+        currentPlayerEl.textContent = players[currentPlayerIndex].name;
+        document.querySelector('.game-info').style.borderColor = `var(--player-color-${players[currentPlayerIndex].id})`;
+    }
+
+    // ATUALIZADO: Mensagem de vitória com nome customizado
+    function moverJogador(passos) {
+        const currentPlayer = players[currentPlayerIndex];
+        currentPlayer.position += passos;
+
+        if (currentPlayer.position >= municipios.length - 1) {
+            currentPlayer.position = municipios.length - 1;
+            atualizarPosicoesDosJogadores();
+            setTimeout(() => {
+                alert(`Parabéns, ${currentPlayer.name}, você venceu o jogo!`);
+                resetGame();
+            }, 500);
+        } else {
+            atualizarPosicoesDosJogadores();
+        }
+    }
+
+    // --- Funções existentes (sem grandes alterações) ---
 
     function renderizarTabuleiro() {
         gameBoard.innerHTML = '';
@@ -62,28 +139,10 @@ document.addEventListener('DOMContentLoaded', () => {
         atualizarPosicoesDosJogadores();
     }
 
-    function atualizarPosicoesDosJogadores() {
-        document.querySelectorAll('.player-marker').forEach(marker => marker.remove());
-        players.forEach(player => {
-            const currentSpaceDiv = document.querySelector(`.board-space[data-index='${player.position}']`);
-            if (currentSpaceDiv) {
-                const playerMarker = document.createElement('div');
-                playerMarker.className = `player-marker player-${player.id}`;
-                playerMarker.textContent = player.id;
-                currentSpaceDiv.appendChild(playerMarker);
-            }
-        });
-    }
-
-    function atualizarInfoJogador() {
-        currentPlayerEl.textContent = `Jogador ${players[currentPlayerIndex].id}`;
-        document.querySelector('.game-info').style.borderColor = `var(--player-color-${players[currentPlayerIndex].id})`;
-    }
-
     function rolarDado() {
         const currentPlayer = players[currentPlayerIndex];
         if (currentPlayer.blockedTurns > 0) {
-            alert(`Jogador ${currentPlayer.id} está bloqueado nesta rodada!`);
+            alert(`Jogador ${currentPlayer.name} está bloqueado nesta rodada!`);
             currentPlayer.blockedTurns--;
             proximoJogador();
             return;
@@ -111,36 +170,26 @@ document.addEventListener('DOMContentLoaded', () => {
             players[currentPlayerIndex].blockedTurns = 1;
         } else if (carta.tipo === 'bonus') {
             cardContentEl.innerHTML = `<h3>Bônus!</h3><p>${carta.texto}</p><button class="card-close-btn">Avançar!</button>`;
-            moverJogador(2); // Avança 2 casas diretamente
+            moverJogador(2);
         } else if (carta.tipo === 'curiosidade') {
             cardContentEl.innerHTML = `<h3>Curiosidade</h3><p>${carta.texto}</p><button class="card-close-btn">Interessante!</button>`;
         }
         cardModal.style.display = 'flex';
     }
 
-    function moverJogador(passos) {
-        const currentPlayer = players[currentPlayerIndex];
-        currentPlayer.position += passos;
-
-        if (currentPlayer.position >= municipios.length - 1) {
-            currentPlayer.position = municipios.length - 1;
-            atualizarPosicoesDosJogadores();
-            setTimeout(() => {
-                alert(`Parabéns, Jogador ${currentPlayer.id}, você venceu o jogo!`);
-                resetGame();
-            }, 500);
-        } else {
-            atualizarPosicoesDosJogadores();
-        }
-    }
-
     function resetGame() {
+        players.forEach(player => {
+            if (player.photo) {
+                URL.revokeObjectURL(player.photo); // Limpa a memória das imagens
+            }
+        });
         players = [];
         currentPlayerIndex = 0;
         playerSetup.style.display = 'block';
         gameControls.style.display = 'none';
         gameBoard.innerHTML = '';
         diceResultEl.textContent = '';
+        generatePlayerInputs(parseInt(numPlayersSelect.value)); // Gera os inputs novamente
     }
 
     function proximoJogador() {
@@ -154,20 +203,22 @@ document.addEventListener('DOMContentLoaded', () => {
     startGameBtn.addEventListener('click', startGame);
     rollDiceBtn.addEventListener('click', rolarDado);
 
+    // NOVO: Event listener para gerar inputs quando o número de jogadores muda
+    numPlayersSelect.addEventListener('change', (e) => {
+        generatePlayerInputs(parseInt(e.target.value));
+    });
+
     cardModal.addEventListener('click', (e) => {
-        // Lógica para fechar o modal
         if (e.target.classList.contains('card-close-btn') || e.target === cardModal) {
             cardModal.style.display = 'none';
             proximoJogador();
         }
 
-        // Lógica para responder a um desafio
         if (e.target.classList.contains('card-option-btn')) {
             const cartaDesafio = cartas.find(c => c.pergunta === e.target.closest('#card-content').querySelector('p').textContent);
             const respostaUsuario = e.target.dataset.resposta;
             const feedbackEl = document.getElementById('feedback-resposta');
 
-            // Desabilita os botões para evitar cliques múltiplos
             e.target.parentElement.querySelectorAll('.card-option-btn').forEach(btn => btn.disabled = true);
 
             if (respostaUsuario === cartaDesafio.resposta) {
@@ -183,5 +234,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 proximoJogador();
             }, 2000);
         }
+    });
+
+    // Inicia gerando os inputs para o valor padrão (2 jogadores)
+    generatePlayerInputs(2);
+    // NOVO: Lógica para confirmar a saída da página
+    const backToHubLink = document.getElementById('back-to-hub-link');
+
+    backToHubLink.addEventListener('click', (event) => {
+        // 1. Impede a navegação imediata
+        event.preventDefault();
+
+        // 2. Exibe a caixa de confirmação
+        const userConfirmed = confirm('Tem certeza que deseja sair? Todo o progresso do jogo será perdido.');
+
+        // 3. Se o usuário confirmar, redireciona para a página inicial
+        if (userConfirmed) {
+            window.location.href = backToHubLink.href;
+        }
+        // Se não confirmar, não faz nada e o jogo continua.
     });
 });

@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rota do Sertão - Jogo de Tabuleiro</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/rota.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 
-<body>
-
+<body class="game-rota-page">
     <div class="game-layout-container">
         <div class="board-area">
             <header class="page-header">
@@ -34,6 +34,9 @@
                     <option value="3">3 Jogadores</option>
                     <option value="4">4 Jogadores</option>
                 </select>
+
+                <div id="player-inputs-container"></div>
+
                 <button id="start-game-btn">Começar Jogo</button>
             </div>
 
@@ -45,7 +48,7 @@
                 <div id="dice-result"></div>
             </div>
 
-            <a href="../index.html" class="back-link">Voltar para o Hub</a>
+            <a href="../index.html" class="back-link" id="back-to-hub-link">Voltar para o Hub</a>
         </div>
     </div>
 
